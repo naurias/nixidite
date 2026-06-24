@@ -1,0 +1,79 @@
+{ den, lib, ... }:
+{
+    den.aspects.example = {
+        nixos = {config, lib, pkgs, ... }: {
+            blah blah 
+        };
+        provides.subexample = {
+            nixos { config, lib, pkgs, ... }: {
+
+            };
+        };
+    };
+}
+
+
+# include it as 
+includes = [
+  den.aspects.gaming
+  den.aspects.gaming._.emulation   # → RetroArch + EmulationStation
+  # den.aspects.gaming._.streaming # commented out — OBS stays off
+];
+
+
+# now for namespaces 
+# create one as 
+
+  imports = [ (inputs.den.namespace "nr" false) ];
+
+
+# now create the namespace nix file 
+
+{ nr, ... }:
+{
+  nr.desktop = {
+    includes = [
+      nr.desktop-niri
+      nr.desktop-waybar
+      nr.desktop-files
+      nr.desktop-terminal
+    ];
+
+    provides.apps = {
+      homeManager = { pkgs, ... }: {
+        home.packages = with pkgs; [ firefox eog evince ];
+      };
+    };
+
+    provides.xdg = {
+      nixos = { pkgs, ... }: {
+        xdg.portal.enable = true;
+        xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
+      };
+    };
+  };
+}
+
+# example 
+{ nr, ... }:
+{
+  nr.desktop-niri = {
+    nixos = { pkgs, ... }: { ... };
+    homeManager = { pkgs, ... }: { ... };
+  };
+}
+
+# include as 
+
+{ den, nr, ... }:
+{
+  den.aspects.nixreaper = {
+    includes = [
+      den.batteries.hostname
+      nr.gaming            # ← was den.aspects.gaming
+      nr.desktop           # ← was den.aspects.desktop
+      nr.desktop._.xdg     # ← was den.aspects.desktop._.xdg
+    ];
+    nixos = { pkgs, ... }: { ... };
+  };
+}
