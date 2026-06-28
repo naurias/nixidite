@@ -85,6 +85,8 @@
           zathura
           kdePackages.qtsvg
           kdePackages.kio-fuse
+          buku
+          single-file-cli
           # file management
           lxqt.pcmanfm-qt
           kdePackages.dolphin
@@ -94,6 +96,7 @@
           obs-studio
           qbittorrent
           vesktop
+          blender
           # password management
           git-credential-keepassxc
           keepassxc
