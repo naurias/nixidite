@@ -87,6 +87,7 @@
           kdePackages.kio-fuse
           buku
           single-file-cli
+          obsidian
           # file management
           lxqt.pcmanfm-qt
           kdePackages.dolphin
