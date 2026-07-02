@@ -1,0 +1,161 @@
+/* Rosé Pine Markdown Styling with Ubuntu Sans & Colored Checkboxes */
+
+.markdown-body {
+  font-family: "Ubuntu Sans", "Segoe UI", Arial, freesans, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 16px;
+  color: #e0def4; /* Rosé Pine text */
+  line-height: 1.6;
+  word-wrap: break-word;
+  padding: 45px;
+  background: #191724; /* Base */
+  border: 1px solid #26233a;
+  border-radius: 0 0 3px 3px;
+}
+
+/* Headings */
+.markdown-body h1 { font-size: 2.25em; color: #eb6f92; border-bottom: 1px solid #26233a; }
+.markdown-body h2 { font-size: 1.75em; color: #f6c177; border-bottom: 1px solid #26233a; }
+.markdown-body h3 { font-size: 1.5em;  color: #9ccfd8; }
+.markdown-body h4 { font-size: 1.25em; color: #c4a7e7; }
+.markdown-body h5 { font-size: 1em;    color: #31748f; }
+.markdown-body h6 { font-size: 1em;    color: #6e6a86; }
+
+/* Lists */
+.markdown-body ul,
+.markdown-body ol {
+  padding-left: 2em;
+}
+
+/* Custom list marker colors */
+.markdown-body ul li::marker,
+.markdown-body ol li::marker {
+  color: #f6c177; /* Level 1: gold */
+}
+.markdown-body ul ul li::marker,
+.markdown-body ol ul li::marker,
+.markdown-body ul ol li::marker,
+.markdown-body ol ol li::marker {
+  color: #9ccfd8; /* Level 2: foam */
+}
+.markdown-body ul ul ul li::marker,
+.markdown-body ol ul ul li::marker,
+.markdown-body ul ol ul li::marker,
+.markdown-body ol ol ul li::marker {
+  color: #c4a7e7; /* Level 3+: iris */
+}
+
+/* Blockquote */
+.markdown-body blockquote {
+  margin: 0;
+  padding: 0 15px;
+  color: #908caa;
+  border-left: 4px solid #403d52;
+  background: #1f1d2e;
+  border-radius: 3px;
+}
+
+/* Tables */
+.markdown-body table {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+.markdown-body table tr {
+  background-color: #191724;
+  border-top: 1px solid #26233a;
+}
+.markdown-body table tr:nth-child(2n) {
+  background-color: #1f1d2e;
+}
+.markdown-body table th,
+.markdown-body table td {
+  padding: 6px 13px;
+  border: 1px solid #26233a;
+  color: #e0def4;
+}
+
+/* Code blocks */
+.markdown-body pre {
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #1f1d2e;
+  border-radius: 3px;
+  color: #e0def4;
+}
+.markdown-body pre code {
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-size: 100%;
+  background-color: transparent;
+}
+.markdown-body code {
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-size: 85%;
+  color: #c4a7e7; /* iris for inline code */
+  background-color: #26233a;
+  border-radius: 3px;
+  padding: 0.2em 0.4em;
+}
+
+/* Links */
+.markdown-body a {
+  color: #9ccfd8; /* foam */
+  text-decoration: none;
+}
+.markdown-body a:hover {
+  color: #eb6f92; /* love */
+  text-decoration: underline;
+}
+
+/* Images */
+.markdown-body img {
+  max-width: 100%;
+  border-radius: 4px;
+  box-shadow: 0 0 10px #1f1d2e;
+}
+
+/* Emphasis */
+.markdown-body strong { color: #f6c177; }
+.markdown-body em { color: #eb6f92; }
+.markdown-body del { color: #6e6a86; }
+
+/* Task list */
+.task-list-item {
+  list-style-type: none;
+}
+.task-list-item input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 1.1em;
+  height: 1.1em;
+  margin: 0 0.5em 0.25em -1.6em;
+  border: 2px solid #6e6a86; /* muted border */
+  border-radius: 3px;
+  background-color: #191724;
+  cursor: pointer;
+  vertical-align: middle;
+  position: relative;
+}
+
+/* Hover */
+.task-list-item input[type="checkbox"]:hover {
+  border-color: #f6c177; /* gold highlight */
+}
+
+/* Checked state */
+.task-list-item input[type="checkbox"]:checked {
+  background-color: #31748f; /* pine */
+  border-color: #31748f;
+}
+.task-list-item input[type="checkbox"]:checked::after {
+  content: "✔";
+  position: absolute;
+  top: -2px;
+  left: 2px;
+  font-size: 0.9em;
+  color: #191724; /* dark background checkmark */
+}
+

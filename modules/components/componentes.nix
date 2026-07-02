@@ -2,7 +2,8 @@
   den,
   libs,
   virt,
-  de, 
+  de,
+  neo,
   ...
 }:
 {
@@ -19,6 +20,7 @@
       de.desktop
       den.aspects.gaming
       den.aspects.stylix
+      neo.nvf
     ];
   };
 }

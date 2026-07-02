@@ -3,6 +3,7 @@
   lib,
   virt,
   de,
+  neo,
   ...
 }:
 {

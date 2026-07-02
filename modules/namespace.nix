@@ -4,6 +4,7 @@
   imports = [
     (inputs.den.namespace "virt" true)
     (inputs.den.namespace "de" true)
+    (inputs.den.namespace "neo" true)
   ];
 
   # you can have more than one namespace (false = not flake exposed)

@@ -67,6 +67,8 @@
 
         # Firefox
         stylix.targets.firefox.profileNames = [ "nix" ];
+	# NVF
+	stylix.targets.nvf.enable = false;
         # kitty
         stylix.targets.kitty.enable = false;
         programs.kitty = {

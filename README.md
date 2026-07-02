@@ -10,6 +10,7 @@ My personal NixOS configuration, built using the dendritic pattern via the [denf
 - CachyOS kernel
 - Nvidia drivers
 - Flake file and import tree for pathless file and input imports
+- Neovim configured through nvf
 
 # Flake Structure
 

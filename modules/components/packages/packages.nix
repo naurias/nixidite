@@ -96,7 +96,7 @@
           vlc
           obs-studio
           qbittorrent
-          vesktop
+          #vesktop
           blender
           # password management
           git-credential-keepassxc

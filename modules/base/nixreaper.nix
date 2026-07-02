@@ -1,6 +1,7 @@
 {
   den,
   lib,
+  neo,
   virt,
   de,
   ...
