@@ -72,6 +72,8 @@
           php
           python312
           htop
+          jujutsu
+          lazygit
           # browsers
           brave
           firefox
