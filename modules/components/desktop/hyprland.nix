@@ -28,15 +28,25 @@
         ...
       }:
       {
+        home.packages = with pkgs; [
+          hyprshutdown
+        ];
+        home.file.".config/hypr/extra.lua".source = "${inputs.dotfiles}/hypr/extra.lua";
         wayland.windowManager.hyprland = {
           enable = true;
           xwayland.enable = true;
+          extraConfig = ''
+            require("extra")
+          '';
           settings = {
-            animation = {
-              leaf = "windows";
-              enabled = true;
-              bezier = "default";
-              speed = 0.8;
+            mainMod = {
+              _var = "SUPER";
+            };
+            on = {
+              _args = [
+                "hyprland.start"
+                (lib.generators.mkLuaInline "function()\n  hl.exec_cmd(\"noctalia\")\nend")
+              ];
             };
             monitor = {
               output = "eDP-1";
@@ -45,6 +55,13 @@
               scale = 1;
             };
             config = {
+              master = {
+                new_status = "master";
+                new_on_top = true;
+              };
+              scrolling = {
+                column_width = 0.6;
+              };
               general = {
                 layout = "master";
                 border_size = 2;
@@ -74,20 +91,6 @@
                 };
               };
             };
-            bind = [
-              {
-                _args = [
-                  "SUPER + RETURN"
-                  (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"kitty\")")
-                ];
-              }
-              {
-                _args = [
-                  "SUPER + D"
-                  (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"noctalia msg panel-toggle launcher\")")
-                ];
-              }
-            ];
           };
         };
       };
