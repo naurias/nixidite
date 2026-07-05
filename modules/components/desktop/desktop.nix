@@ -5,7 +5,6 @@
       de.fonts
       de.niri
       de.noctalia
-      de.mango
       de.hyprland
     ];
     homeManager =
