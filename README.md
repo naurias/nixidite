@@ -11,6 +11,9 @@ My personal NixOS configuration, built using the dendritic pattern via the [denf
 - Nvidia drivers
 - Flake file and import tree for pathless file and input imports
 - Neovim configured through nvf
+- Hyprland and Niri 
+- Kitty Terminal 
+- Noctalia Shell 
 
 # Flake Structure
 
