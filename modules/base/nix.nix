@@ -38,6 +38,7 @@
       { pkgs, ... }:
       {
         users.users.nix.packages = [ ];
+        home-manager.backupFileExtension = "hm-backup";
         users.users.nix = {
           isNormalUser = true;
           extraGroups = [
@@ -61,7 +62,6 @@
       {
         home.packages = [ ];
         nixpkgs.config.allowUnfree = true;
-        #home-manager.backupFileExtension = "hm-backup";
       };
 
     # <user>.policies.<name>, aspect-included policy

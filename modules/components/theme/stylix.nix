@@ -44,6 +44,7 @@
       }:
       {
 
+
         services.awww.enable = true;
 
         #theming options go here mainly stylix
@@ -67,8 +68,8 @@
 
         # Firefox
         stylix.targets.firefox.profileNames = [ "nix" ];
-	# NVF
-	stylix.targets.nvf.enable = false;
+        # NVF
+        stylix.targets.nvf.enable = false;
         # kitty
         stylix.targets.kitty.enable = false;
         programs.kitty = {
