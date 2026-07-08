@@ -17,8 +17,9 @@
         imports = [ inputs.stylix.nixosModules.stylix ];
 
         stylix.enable = true;
-        stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
+        stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-dark.yaml";
         stylix.image = ./1.png;
+        stylix.polarity = "dark";
         # Fonts
         stylix.fonts = {
           #  sizes = {
@@ -75,7 +76,7 @@
         programs.kitty = {
           font.name = "FiraCodeNerdFont";
           font.size = 14;
-          themeFile = "rose-pine";
+          themeFile = "tokyo_night_night";
           settings = {
             background_opacity = 0.9;
           };

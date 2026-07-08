@@ -24,8 +24,8 @@
             };
             theme = {
               enable = true;
-              name = "rose-pine";
-              style = "main";
+              name = "tokyonight";
+              style = "night";
             };
             options = {
               tabstop = 2;
