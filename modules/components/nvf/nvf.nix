@@ -24,8 +24,8 @@
             };
             theme = {
               enable = true;
-              name = "tokyonight";
-              style = "night";
+              name = "gruvbox";
+              style = "dark";
             };
             options = {
               tabstop = 2;

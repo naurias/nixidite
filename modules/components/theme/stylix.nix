@@ -17,7 +17,7 @@
         imports = [ inputs.stylix.nixosModules.stylix ];
 
         stylix.enable = true;
-        stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-dark.yaml";
+        stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark.yaml";
         stylix.image = ./1.png;
         stylix.polarity = "dark";
         # Fonts
@@ -76,7 +76,7 @@
         programs.kitty = {
           font.name = "FiraCodeNerdFont";
           font.size = 14;
-          themeFile = "tokyo_night_night";
+          themeFile = "gruvbox-dark";
           settings = {
             background_opacity = 0.9;
           };
