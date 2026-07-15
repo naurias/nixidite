@@ -101,8 +101,10 @@
           #vesktop
           blender
           # password management
-          git-credential-keepassxc
           keepassxc
+          #git-credential-keepassxc
+          #bitwarden-desktop
+          #bitwarden-cli
           # development environment and text editors
           ((emacsPackagesFor emacs-pgtk).emacsWithPackages (epkgs: [ epkgs.vterm ]))
           libvterm

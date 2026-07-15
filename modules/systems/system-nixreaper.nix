@@ -12,6 +12,7 @@
       den.aspects.power
       den.aspects.sound
       den.aspects.network
+      den.aspects.network._.server-net
       den.aspects.nvidia
     ];
   };

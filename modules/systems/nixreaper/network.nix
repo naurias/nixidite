@@ -15,6 +15,25 @@
         services.resolved.enable = false;
         services.gvfs.enable = true;
       };
+    provides.server-net = {
+      nixos =
+        {
+          config,
+          lib,
+          pkgs,
+          ...
+        }:
+        {
+          environment.systemPackages = with pkgs; [
+            netbird-ui
+          ];
+          networking.firewall.enable = false;
+          services.netbird.enable = true;
+          security.pki.certificateFiles = [
+            ./rootCA.pem
+          ];
+        };
+    };
 
   };
 }

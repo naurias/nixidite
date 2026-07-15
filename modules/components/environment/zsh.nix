@@ -49,6 +49,7 @@
           environment.variables = {
             EDITOR = "nvim";
             SSH_AUTH_SOCK = "/run/user/1000/gcr/ssh";
+            #SSH_AUTH_SOCK= "/home/nix/.bitwarden-ssh-agent.sock";
           };
           environment.localBinInPath = true;
         };
