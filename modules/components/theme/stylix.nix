@@ -18,7 +18,7 @@
 
         stylix.enable = true;
         stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark.yaml";
-        stylix.image = ./1.png;
+        stylix.image = ./1.jpg;
         stylix.polarity = "dark";
         # Fonts
         stylix.fonts = {
@@ -45,9 +45,9 @@
       }:
       {
 
-
         services.awww.enable = true;
 
+        home.pointerCursor.enable = true;
         #theming options go here mainly stylix
         #stylix.targets.floorp.enable = true;
         #stylix.targets.floorp.profileNames = [ "nix" ];

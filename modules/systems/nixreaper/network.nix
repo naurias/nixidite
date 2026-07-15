@@ -29,9 +29,6 @@
           ];
           networking.firewall.enable = false;
           services.netbird.enable = true;
-          security.pki.certificateFiles = [
-            ./rootCA.pem
-          ];
         };
     };
 

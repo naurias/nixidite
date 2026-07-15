@@ -102,9 +102,8 @@
           blender
           # password management
           keepassxc
-          #git-credential-keepassxc
-          #bitwarden-desktop
-          #bitwarden-cli
+          # bitwarden-desktop
+          # bitwarden-cli
           # development environment and text editors
           ((emacsPackagesFor emacs-pgtk).emacsWithPackages (epkgs: [ epkgs.vterm ]))
           libvterm
