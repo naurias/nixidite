@@ -54,7 +54,6 @@
           fastfetch
           httpie
           jq
-          cryfs
           procs
           ripgrep
           tldr

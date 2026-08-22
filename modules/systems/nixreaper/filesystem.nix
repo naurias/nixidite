@@ -27,7 +27,7 @@
         boot.extraModulePackages = [ ];
 
         fileSystems."/" = {
-          device = "/dev/disk/by-uuid/55ed367f-922b-48da-b2bb-89ef7294fb5e";
+          device = "/dev/disk/by-uuid/7cba7657-db71-4eec-bcd4-dc3911b2413b";
           fsType = "btrfs";
           options = [
             "subvol=@"
@@ -41,7 +41,7 @@
         };
 
         fileSystems."/home" = {
-          device = "/dev/disk/by-uuid/55ed367f-922b-48da-b2bb-89ef7294fb5e";
+          device = "/dev/disk/by-uuid/7cba7657-db71-4eec-bcd4-dc3911b2413b";
           fsType = "btrfs";
           options = [
             "subvol=@home"
@@ -55,7 +55,7 @@
         };
 
         fileSystems."/var" = {
-          device = "/dev/disk/by-uuid/55ed367f-922b-48da-b2bb-89ef7294fb5e";
+          device = "/dev/disk/by-uuid/7cba7657-db71-4eec-bcd4-dc3911b2413b";
           fsType = "btrfs";
           options = [
             "subvol=@var"
@@ -69,7 +69,7 @@
         };
 
         fileSystems."/nix" = {
-          device = "/dev/disk/by-uuid/55ed367f-922b-48da-b2bb-89ef7294fb5e";
+          device = "/dev/disk/by-uuid/7cba7657-db71-4eec-bcd4-dc3911b2413b";
           fsType = "btrfs";
           options = [
             "subvol=@nix"
@@ -83,7 +83,7 @@
         };
 
         fileSystems."/.snapshots" = {
-          device = "/dev/disk/by-uuid/55ed367f-922b-48da-b2bb-89ef7294fb5e";
+          device = "/dev/disk/by-uuid/7cba7657-db71-4eec-bcd4-dc3911b2413b";
           fsType = "btrfs";
           options = [
             "subvol=@snapshots"
@@ -97,7 +97,7 @@
         };
 
         fileSystems."/boot" = {
-          device = "/dev/disk/by-uuid/0803-F319";
+          device = "/dev/disk/by-uuid/B10B-A7C0";
           fsType = "vfat";
           options = [
             "fmask=0022"
@@ -106,7 +106,7 @@
         };
 
         swapDevices = [
-          { device = "/dev/disk/by-uuid/f04405c7-ca97-405a-8e39-26b1f46624b8"; }
+          { device = "/dev/disk/by-uuid/a2bc935d-3cd0-4d4a-92ef-d428377881fb"; }
         ];
 
         nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

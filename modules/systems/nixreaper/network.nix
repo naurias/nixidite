@@ -24,11 +24,11 @@
           ...
         }:
         {
-          environment.systemPackages = with pkgs; [
-            netbird-ui
-          ];
-          networking.firewall.enable = false;
-          services.netbird.enable = true;
+          #environment.systemPackages = with pkgs; [
+          #  netbird-ui
+          #];
+          networking.firewall.enable = true;
+          # services.netbird.enable = true;
         };
     };
 
