@@ -21,6 +21,7 @@
         ];
         nixpkgs.config.allowUnfree = true;
         services.openssh.enable = true;
+        programs.ssh.startAgent = true;
 
         time.timeZone = "Asia/Karachi";
         console = {
