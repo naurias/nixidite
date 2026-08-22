@@ -96,6 +96,17 @@
           ];
         };
 
+        fileSystems."/home/nix/Atlas" = {
+          device = "/dev/disk/by-uuid/e5142b34-ca16-46f5-8108-c95bfd137e29";
+          fsType = "btrfs";
+          options = [ 
+            "subvol=@atlas"
+            "noatime"
+            "compress=zstd"
+            "commit=120"
+          ];
+        };
+
         fileSystems."/boot" = {
           device = "/dev/disk/by-uuid/B10B-A7C0";
           fsType = "vfat";
