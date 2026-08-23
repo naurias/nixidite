@@ -24,6 +24,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     import-tree.url = "github:vic/import-tree";
+    live-server-nvim = {
+      url = "github:selimacerbas/live-server.nvim";
+      flake = false;
+    };
+    mardown-preview-nvim = {
+      url = "github:selimacerbas/markdown-preview.nvim";
+      flake = false;
+    };
+    mermaid-rs-renderer.url = "github:1jehuang/mermaid-rs-renderer";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     noctalia = {
       url = "github:noctalia-dev/noctalia";

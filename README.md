@@ -447,6 +447,8 @@ Rebuild the system using
 nixos rebuild switch --flake .#yourhostname
 ```
 
+# Notes
+- If you get missing attribute `inputs`, It is most likey not declared in top level attribute of file.
 
 # Credits 
 

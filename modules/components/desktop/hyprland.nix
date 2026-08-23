@@ -60,7 +60,8 @@
                 new_on_top = true;
               };
               scrolling = {
-                column_width = 0.6;
+                column_width = 1;
+                direction = "down";
               };
               general = {
                 layout = "master";

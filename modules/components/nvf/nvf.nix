@@ -20,7 +20,7 @@
           settings.vim = {
             enableLuaLoader = true;
             globals = {
-              mkdp_markdown_css = "/home/nix/nixidite/modules/components/nvf/markdown.css";
+              #mkdp_markdown_css = "/home/nix/nixidite/modules/components/nvf/markdown.css";
             };
             theme = {
               enable = true;

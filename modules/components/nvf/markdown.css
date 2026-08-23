@@ -1,160 +1,163 @@
-/* Gruvbox Dark Markdown Styling with Ubuntu Sans & Colored Checkboxes */
+/* Gruvbox theme for selimacerbas/markdown-preview.nvim
+   Point custom_css at this file, e.g.:
+     custom_css = "~/.config/nvim/markdown-preview.css",
+   The plugin loads this after its bundled styles, so these rules win.
+   Content is scoped under #content; colors flow through CSS variables
+   on :root (dark, default) and [data-theme="light"]. */
 
-.markdown-body {
-  font-family: "Ubuntu Sans", "Segoe UI", Arial, freesans, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  font-size: 16px;
-  color: #ebdbb2; /* Gruvbox text */
-  line-height: 1.6;
-  word-wrap: break-word;
-  padding: 45px;
-  background: #282828; /* Base */
-  border: 1px solid #504945;
-  border-radius: 0 0 3px 3px;
-}
+/* ── Gruvbox Dark (default theme) ─────────────────────────────────── */
+:root {
+  --bg: #282828;
+  --panel: #32302f;
+  --stroke: #504945;
+  --fg: #ebdbb2;
+  --fg-muted: #a89984;
+  --link: #8ec07c;
+  --code-bg: #3c3836;
+  --blockquote-border: #504945;
+  --table-border: #504945;
+  --table-row-alt: rgba(235, 219, 178, 0.04);
+  --accent: #fabd2f;
+  --badge-bg: rgba(235, 219, 178, 0.06);
+  --badge-fg: #a89984;
+  --skeleton: rgba(235, 219, 178, 0.05);
+  --skeleton-shine: rgba(235, 219, 178, 0.1);
+  --scroll-thumb: rgba(168, 153, 132, 0.4);
+  --scroll-thumb-hover: rgba(168, 153, 132, 0.65);
 
-/* Headings */
-.markdown-body h1 { font-size: 2.25em; color: #83a598; border-bottom: 1px solid #504945; }
-.markdown-body h2 { font-size: 1.75em; color: #d3869b; border-bottom: 1px solid #504945; }
-.markdown-body h3 { font-size: 1.5em;  color: #8ec07c; }
-.markdown-body h4 { font-size: 1.25em; color: #fe8019; }
-.markdown-body h5 { font-size: 1em;    color: #b8bb26; }
-.markdown-body h6 { font-size: 1em;    color: #928374; }
+  /* GitHub-style callouts */
+  --color-note: #83a598;
+  --color-tip: #b8bb26;
+  --color-warning: #fabd2f;
+  --color-caution: #fb4934;
+  --color-important: #d3869b;
 
-/* Lists */
-.markdown-body ul,
-.markdown-body ol {
-  padding-left: 2em;
-}
-
-/* Custom list marker colors */
-.markdown-body ul li::marker,
-.markdown-body ol li::marker {
-  color: #fabd2f; /* Level 1: yellow */
-}
-.markdown-body ul ul li::marker,
-.markdown-body ol ul li::marker,
-.markdown-body ul ol li::marker,
-.markdown-body ol ol li::marker {
-  color: #8ec07c; /* Level 2: aqua */
-}
-.markdown-body ul ul ul li::marker,
-.markdown-body ol ul ul li::marker,
-.markdown-body ul ol ul li::marker,
-.markdown-body ol ol ul li::marker {
-  color: #d3869b; /* Level 3+: purple */
+  /* Heading accents (used as left-border stripe by the plugin;
+     we also apply these to heading text below) */
+  --color-h1: #83a598;
+  --color-h2: #d3869b;
+  --color-h3: #8ec07c;
+  --color-h4: #fe8019;
+  --color-h5: #b8bb26;
+  --color-h6: #928374;
 }
 
-/* Blockquote */
-.markdown-body blockquote {
-  margin: 0;
-  padding: 0 15px;
-  color: #a89984;
-  border-left: 4px solid #3c3836;
-  background: #32302f;
-  border-radius: 3px;
+/* ── Gruvbox Light (used only if you toggle light mode in-browser) ── */
+[data-theme="light"] {
+  --bg: #fbf1c7;
+  --panel: #f2e5bc;
+  --stroke: #d5c4a1;
+  --fg: #3c3836;
+  --fg-muted: #7c6f64;
+  --link: #427b58;
+  --code-bg: #ebdbb2;
+  --blockquote-border: #d5c4a1;
+  --table-border: #d5c4a1;
+  --table-row-alt: rgba(60, 56, 54, 0.04);
+  --accent: #b57614;
+  --badge-bg: rgba(60, 56, 54, 0.05);
+  --badge-fg: #7c6f64;
+
+  --color-note: #076678;
+  --color-tip: #79740e;
+  --color-warning: #b57614;
+  --color-caution: #9d0006;
+  --color-important: #8f3f71;
+
+  --color-h1: #076678;
+  --color-h2: #8f3f71;
+  --color-h3: #79740e;
+  --color-h4: #af3a03;
+  --color-h5: #b57614;
+  --color-h6: #7c6f64;
 }
 
-/* Tables */
-.markdown-body table {
-  display: block;
-  width: 100%;
-  overflow: auto;
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-.markdown-body table tr {
-  background-color: #282828;
-  border-top: 1px solid #504945;
-}
-.markdown-body table tr:nth-child(2n) {
-  background-color: #32302f;
-}
-.markdown-body table th,
-.markdown-body table td {
-  padding: 6px 13px;
-  border: 1px solid #504945;
-  color: #ebdbb2;
+/* ── Font ────────────────────────────────────────────────────────── */
+body,
+#content {
+  font-family: "Ubuntu Sans", "Segoe UI", Arial, freesans, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
-/* Code blocks */
-.markdown-body pre {
-  padding: 16px;
-  overflow: auto;
-  font-size: 85%;
-  line-height: 1.45;
-  background-color: #32302f;
-  border-radius: 3px;
-  color: #ebdbb2;
+/* ── Headings — color the text itself, not just the border stripe ── */
+#content h1 { color: var(--color-h1); }
+#content h2 { color: var(--color-h2); }
+#content h3 { color: var(--color-h3); }
+#content h4 { color: var(--color-h4); }
+#content h5 { color: var(--color-h5); }
+#content h6 { color: var(--color-h6); }
+
+/* ── Emphasis ────────────────────────────────────────────────────── */
+#content strong { color: var(--accent); }
+#content em { color: #fb4934; }
+#content del { color: var(--fg-muted); }
+
+/* ── Links ───────────────────────────────────────────────────────── */
+#content a:hover { color: #fb4934; }
+
+/* ── List marker colors by nesting level ────────────────────────── */
+#content ul li::marker,
+#content ol li::marker {
+  color: var(--accent); /* level 1: yellow */
 }
-.markdown-body pre code {
-  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
-  font-size: 100%;
-  background-color: transparent;
+#content ul ul li::marker,
+#content ol ul li::marker,
+#content ul ol li::marker,
+#content ol ol li::marker {
+  color: #8ec07c; /* level 2: aqua */
 }
-.markdown-body code {
-  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
-  font-size: 85%;
-  color: #d3869b; /* purple for inline code */
-  background-color: #504945;
-  border-radius: 3px;
-  padding: 0.2em 0.4em;
+#content ul ul ul li::marker,
+#content ol ul ul li::marker,
+#content ul ol ul li::marker,
+#content ol ol ul li::marker {
+  color: #d3869b; /* level 3+: purple */
 }
 
-/* Links */
-.markdown-body a {
-  color: #8ec07c; /* aqua */
-  text-decoration: none;
-}
-.markdown-body a:hover {
-  color: #fb4934; /* red */
-  text-decoration: underline;
-}
-
-/* Images */
-.markdown-body img {
-  max-width: 100%;
-  border-radius: 4px;
-  box-shadow: 0 0 10px #32302f;
-}
-
-/* Emphasis */
-.markdown-body strong { color: #fabd2f; }
-.markdown-body em { color: #fb4934; }
-.markdown-body del { color: #928374; }
-
-/* Task list */
-.task-list-item {
-  list-style-type: none;
-}
-.task-list-item input[type="checkbox"] {
+/* ── Task list checkboxes ────────────────────────────────────────── */
+#content .task-list-item input[type="checkbox"] {
   appearance: none;
   -webkit-appearance: none;
   width: 1.1em;
   height: 1.1em;
-  margin: 0 0.5em 0.25em -1.6em;
-  border: 2px solid #928374; /* muted border */
+  border: 2px solid var(--fg-muted);
   border-radius: 3px;
-  background-color: #282828;
+  background-color: var(--bg);
   cursor: pointer;
   vertical-align: middle;
   position: relative;
 }
-
-/* Hover */
-.task-list-item input[type="checkbox"]:hover {
-  border-color: #fabd2f; /* yellow highlight */
+#content .task-list-item input[type="checkbox"]:hover {
+  border-color: var(--accent);
 }
-
-/* Checked state */
-.task-list-item input[type="checkbox"]:checked {
-  background-color: #83a598; /* blue */
+#content .task-list-item input[type="checkbox"]:checked {
+  background-color: #83a598;
   border-color: #83a598;
 }
-.task-list-item input[type="checkbox"]:checked::after {
+#content .task-list-item input[type="checkbox"]:checked::after {
   content: "✔";
   position: absolute;
   top: -2px;
-  left: 2px;
+  left: 1px;
   font-size: 0.9em;
-  color: #282828; /* dark background checkmark */
+  color: var(--bg);
+}
+
+/* ── Blockquote ──────────────────────────────────────────────────── */
+#content blockquote {
+  background: var(--panel);
+  border-radius: 3px;
+}
+
+/* ── Inline code (keep code-block text at default fg) ───────────── */
+#content code {
+  color: #d3869b;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+#content pre code {
+  color: var(--fg);
+}
+
+/* ── Images ──────────────────────────────────────────────────────── */
+#content img {
+  box-shadow: 0 0 10px var(--panel);
 }

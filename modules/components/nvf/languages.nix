@@ -14,7 +14,6 @@
           };
           treesitter = {
             enable = true;
-            fold = true;
           };
 
           formatter.conform-nvim = {
