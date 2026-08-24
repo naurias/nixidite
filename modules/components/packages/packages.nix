@@ -75,7 +75,6 @@
           lazygit
           # browsers
           brave
-          firefox
           w3m
           # cloud storages
           filen-desktop
@@ -120,6 +119,16 @@
           ...
         }:
         {
+          programs.firefox = {
+            enable = true;
+            profiles = {
+              nix = {
+                isDefault = true;
+                id = 0;
+                name = "nix";
+              };
+            };
+          };
           # utilities
           programs.btop.enable = true;
           # terminals

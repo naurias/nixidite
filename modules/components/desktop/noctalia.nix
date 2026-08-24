@@ -14,7 +14,7 @@
         ];
         home.file = {
           ".config/noctalia" = {
-            source = "${inputs.dotfiles}/noctalia";
+            source = "${inputs.dotfiles}/gruvbox/noctalia";
             recursive = true;
           };
         };

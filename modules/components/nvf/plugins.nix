@@ -12,6 +12,11 @@
         home.packages = [
           inputs.mermaid-rs-renderer.packages.${pkgs.stdenv.hostPlatform.system}.default
         ];
+        home.file = {
+          ".config/neomark/markdown.css" = {
+            source = "${inputs.dotfiles}/gruvbox/neovim/markdown.css";
+          };
+        };
         programs.nvf.settings.vim = {
           #custom plugins
           binds.whichKey.enable = true;
@@ -96,7 +101,7 @@
                   host = "127.0.0.1",
                   open_browser = true,
                   browser = nil,
-                  custom_css = "~/nixidite/modules/components/nvf/markdown.css",
+                  custom_css = "~/.config/neomark/markdown.css",
                   workspace_dir = nil,
                   overwrite_index_on_start = true,
                   auto_refresh = true,

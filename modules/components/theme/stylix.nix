@@ -6,6 +6,9 @@
 }:
 {
   den.aspects.stylix = {
+    includes = [
+      den.aspects.tspec
+    ];
     nixos =
       {
         config,
@@ -44,15 +47,17 @@
         ...
       }:
       {
+        # emacs 
+        home.file = {
+          ".config/doom" = {
+            source = "${inputs.dotfiles}/gruvbox/doom";
+            recursive = true;
+          };
+        };
 
         services.awww.enable = true;
 
         home.pointerCursor.enable = true;
-        #theming options go here mainly stylix
-        #stylix.targets.floorp.enable = true;
-        #stylix.targets.floorp.profileNames = [ "nix" ];
-        #stylix.targets.floorp.colors.enable = true;
-        #stylix.targets.floorp.colorTheme.enable = true;
 
         # cursor
         stylix.cursor.package = pkgs.bibata-cursors;
