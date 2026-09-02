@@ -88,6 +88,7 @@
           buku
           single-file-cli
           obsidian
+          opencode
           # file management
           lxqt.pcmanfm-qt
           kdePackages.dolphin
