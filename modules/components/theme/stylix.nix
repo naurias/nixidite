@@ -47,11 +47,17 @@
         ...
       }:
       {
-        # emacs 
+        # emacs
         home.file = {
           ".config/doom" = {
-            source = "${inputs.dotfiles}/gruvbox/doom";
+            source = "${inputs.dotfiles}/common/doom";
             recursive = true;
+          };
+          ".config/doom/style.el" = {
+            source = "${inputs.dotfiles}/gruvbox/doom/style.el";
+          };
+          ".config/ghostty/theme.ghostty" = {
+            source = "${inputs.dotfiles}/gruvbox/ghostty/theme.ghostty";
           };
         };
 
