@@ -1,4 +1,9 @@
-{ den, lib, inputs, ... }:
+{
+  den,
+  lib,
+  inputs,
+  ...
+}:
 {
   den.aspects.zsh = {
     nixos =
@@ -47,7 +52,8 @@
         }:
         {
           environment.variables = {
-            EDITOR = "nvim";
+            EDITOR = "emacsclient -t -a ''";
+            VISUAL = "emacsclient -c -a ''";
             SSH_AUTH_SOCK = "/run/user/1000/ssh-agent";
           };
           environment.localBinInPath = true;
@@ -75,7 +81,7 @@
           };
           programs.bat = {
             enable = true;
-          }; 
+          };
 
           programs.fzf = {
             enable = true;
@@ -124,6 +130,7 @@
               alias ll='eza -lha --icons=auto --sort=name --group-directories-first' # long list all
               alias ld='eza -lhD --icons=auto' # long list dirs
               alias lt='eza --icons=auto --tree' # list folder as tree
+              alias ec='emacsclient'
               eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/second.toml)"
             '';
           };
