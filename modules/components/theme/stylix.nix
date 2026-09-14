@@ -47,7 +47,7 @@
         ...
       }:
       {
-        # emacs
+        # terminal theming 
         home.file = {
           ".config/doom" = {
             source = "${inputs.dotfiles}/common/doom";
@@ -59,6 +59,12 @@
           ".config/ghostty/theme.ghostty" = {
             source = "${inputs.dotfiles}/gruvbox/ghostty/theme.ghostty";
           };
+          ".config/neomark/markdown.css" = {
+              source = "${inputs.dotfiles}/gruvbox/neovim/markdown.css";
+            };
+          ".config/nvim/lua/plugins/colors.lua" = {
+              source = "${inputs.dotfiles}/gruvbox/neovim/colors.lua";
+            };
         };
 
         services.awww.enable = true;
@@ -81,7 +87,7 @@
         # Firefox
         stylix.targets.firefox.profileNames = [ "nix" ];
         # NVF
-        stylix.targets.nvf.enable = false;
+        # stylix.targets.nvf.enable = false;
         # kitty
         stylix.targets.kitty.enable = false;
         programs.kitty = {

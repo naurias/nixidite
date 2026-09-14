@@ -20,7 +20,7 @@
       de.desktop
       den.aspects.gaming
       den.aspects.stylix
-      neo.nvf
+      # neo.nvf
     ];
   };
 }

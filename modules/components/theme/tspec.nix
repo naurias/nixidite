@@ -35,14 +35,17 @@
               ".config/ghostty/theme.ghostty" = {
                 source = lib.mkForce "${inputs.dotfiles}/kanagawa/ghostty/theme.ghostty";
               };
+              ".config/nvim/lua/plugins/colors.lua" = {
+                  source = lib.mkForce "${inputs.dotfiles}/kanagawa/neovim/colors.lua";
+              };
             };
-            programs.nvf.settings.vim.theme = lib.mkForce {
-              enable = true;
-              name = "base16";
-            };
-            stylix.targets.nvf = lib.mkForce {
-              enable = true;
-            };
+            # programs.nvf.settings.vim.theme = lib.mkForce {
+            #   enable = true;
+            #   name = "base16";
+            # };
+            # stylix.targets.nvf = lib.mkForce {
+            #   enable = true;
+            # };
           };
         };
 
@@ -65,14 +68,17 @@
               ".config/ghostty/theme.ghostty" = {
                 source = lib.mkForce "${inputs.dotfiles}/kanagawa-dragon/ghostty/theme.ghostty";
               };
+              ".config/nvim/lua/plugins/colors.lua" = {
+                  source = lib.mkForce "${inputs.dotfiles}/kanagawa-dragon/neovim/colors.lua";
+              };
             };
-            programs.nvf.settings.vim.theme = lib.mkForce {
-              enable = true;
-              name = "base16";
-            };
-            stylix.targets.nvf = lib.mkForce {
-              enable = true;
-            };
+            # programs.nvf.settings.vim.theme = lib.mkForce {
+            #   enable = true;
+            #   name = "base16";
+            # };
+            # stylix.targets.nvf = lib.mkForce {
+            #   enable = true;
+            # };
           };
         };
 
@@ -96,12 +102,15 @@
               ".config/ghostty/theme.ghostty" = {
                 source = lib.mkForce "${inputs.dotfiles}/tokyonight/ghostty/theme.ghostty";
               };
+              ".config/nvim/lua/plugins/colors.lua" = {
+                  source = lib.mkForce "${inputs.dotfiles}/tokyonight/neovim/colors.lua";
+              };
             };
-            programs.nvf.settings.vim.theme = lib.mkForce {
-              enable = true;
-              name = "tokyonight";
-              style = "storm";
-            };
+            #programs.nvf.settings.vim.theme = lib.mkForce {
+            #  enable = true;
+            #  name = "tokyonight";
+            #  style = "storm";
+            #};
           };
         };
         specialisation.rose-pine.configuration = {
@@ -122,12 +131,15 @@
               ".config/ghostty/theme.ghostty" = {
                 source = lib.mkForce "${inputs.dotfiles}/rosepine/ghostty/theme.ghostty";
               };
+              ".config/nvim/lua/plugins/colors.lua" = {
+                  source = lib.mkForce "${inputs.dotfiles}/rosepine/neovim/colors.lua";
+              };
             };
-            programs.nvf.settings.vim.theme = lib.mkForce {
-              enable = true;
-              name = "rose-pine";
-              style = "main";
-            };
+            #programs.nvf.settings.vim.theme = lib.mkForce {
+            #  enable = true;
+            #  name = "rose-pine";
+            #  style = "main";
+            #};
           };
         };
 
@@ -149,12 +161,15 @@
               ".config/ghostty/theme.ghostty" = {
                 source = lib.mkForce "${inputs.dotfiles}/catppuccin/ghostty/theme.ghostty";
               };
+              ".config/nvim/lua/plugins/colors.lua" = {
+                  source = lib.mkForce "${inputs.dotfiles}/catppuccin/neovim/colors.lua";
+              };
             };
-            programs.nvf.settings.vim.theme = lib.mkForce {
-              enable = true;
-              name = "catppuccin";
-              style = "mocha";
-            };
+            # programs.nvf.settings.vim.theme = lib.mkForce {
+            #   enable = true;
+            #   name = "catppuccin";
+            #   style = "mocha";
+            # };
           };
         };
 

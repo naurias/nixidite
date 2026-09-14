@@ -127,11 +127,11 @@
     "dotfiles": {
       "flake": false,
       "locked": {
-        "lastModified": 1789391781,
-        "narHash": "sha256-tKlhlF2pWyGdz17EvMweS/PVIm9qzD9Jk6OTJtqQt28=",
+        "lastModified": 1789404655,
+        "narHash": "sha256-yeZ3BJAiTg/bPhFSfJbZoJOBCQo6GJ0wcXkBNTbyLDg=",
         "ref": "refs/heads/main",
-        "rev": "0ddd3febe5304b9be557d9c4f28e4d4b454616c4",
-        "revCount": 35,
+        "rev": "7ecf95dfd2af2604f810af6a8de24287959e1d6a",
+        "revCount": 36,
         "type": "git",
         "url": "https://github.com/naurias/dot-nix.git"
       },
