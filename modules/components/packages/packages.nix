@@ -1,4 +1,9 @@
-{ den, lib, ... }:
+{
+  den,
+  lib,
+  inputs,
+  ...
+}:
 {
   den.aspects.packages = {
     nixos =
@@ -37,6 +42,7 @@
       {
         home.packages = with pkgs; [
           # utilitis
+          inputs.mermaid-rs-renderer.packages.${pkgs.stdenv.hostPlatform.system}.default
           appimage-run
           coreutils
           unzip
