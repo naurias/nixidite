@@ -402,184 +402,161 @@ let
     SURFACE2=${hexToRgb t.surface2}
   '';
 
-  # ── Kvantum: standalone themes derived from the tested Noctalia template ──
-  # The dot-nix kvantum.kvconfig/kvantum.svg are identical across all 6 theme
-  # dirs (md5-verified) and only render via Noctalia {{ }} placeholders.
-  # Here we render them at build time into real standalone Kvantum themes,
-  # fix the hardcoded gray button gradients, add the missing tooltip base
-  # color, and contrast-check highlight text.
+  # ── Kvantum: standalone themes derived from the wallbash base ──
+  # Base reference: wallbash (Arc-Dark-derived, Catppuccin-Mocha-Rosewater),
+  # stored identically in every dot-nix <theme>/noctalia/templates/ dir.
+  # The base is static (no Noctalia placeholders); mapping is key-aware,
+  # not blind hex substitution — the same base hex means bgDark in
+  # GeneralColors but accentFg where it sits on an accent fill.
   kvconfigTpl = builtins.readFile "${inputs.dotfiles}/gruvbox/noctalia/templates/kvantum.kvconfig";
   svgTpl = builtins.readFile "${inputs.dotfiles}/gruvbox/noctalia/templates/kvantum.svg";
 
   mkKvconfig = t:
     let
       # pass0: readability fixes independent of palette — opaque file
-      # managers/editors (translucency hurts text), stronger window
-      # opacity (18 left windows nearly transparent).
+      # managers/editors (translucency hurts text). The base is already
+      # solid (translucent_windows=false); keep its opacity tuning.
       pass0 = lib.replaceStrings
         [
-          "opaque=QMPlay2,kaffeine,kmplayer,subtitlecomposer,kdenlive,vlc,avidemux,avidemux2_qt4,avidemux3_qt4,avidemux3_qt5,kamoso,QtCreator,VirtualBox,trojita,dragon,digikam"
-          "reduce_window_opacity=18"
+          "opaque=kaffeine,kmplayer,subtitlecomposer,kdenlive,vlc,smplayer,smplayer2,avidemux,avidemux2_qt4,avidemux3_qt4,avidemux3_qt5,kamoso,QtCreator,VirtualBox,VirtualBoxVM,trojita,dragon,digikam,lyx"
         ]
         [
-          "opaque=QMPlay2,kaffeine,kmplayer,subtitlecomposer,kdenlive,vlc,avidemux,avidemux2_qt4,avidemux3_qt4,avidemux3_qt5,kamoso,QtCreator,VirtualBox,trojita,dragon,digikam,dolphin,pcmanfm-qt,pcmanfm,okular,keepassxc,qbittorrent,ark,gwenview,kate,konsole"
-          "reduce_window_opacity=35"
+          "opaque=kaffeine,kmplayer,subtitlecomposer,kdenlive,vlc,smplayer,smplayer2,avidemux,avidemux2_qt4,avidemux3_qt4,avidemux3_qt5,kamoso,QtCreator,VirtualBox,VirtualBoxVM,trojita,dragon,digikam,lyx,dolphin,pcmanfm-qt,pcmanfm,okular,keepassxc,qbittorrent,ark,gwenview,kate,konsole"
         ]
         kvconfigTpl;
+      # pass1: key-aware roles — text on accent fills, links, tooltip base.
       pass1 = lib.replaceStrings
         [
-          "tooltip.text.color={{ colors.on_surface.default.hex }}"
-          "highlight.text.color={{ colors.on_surface.default.hex }}"
-          "link.color={{ colors.outline.default.hex }}"
-          "link.visited.color={{ colors.on_surface_variant.default.hex }}"
-          "progress.indicator.text.color={{ colors.on_surface.default.hex }}"
-          "base.color={{ colors.surface.default.hex }}"
-          "light.color={{ colors.surface_dim.default.hex }}"
-          "mid.light.color={{ colors.surface_dim.default.hex }}"
-          "dark.color={{ colors.surface_dim.default.hex }}"
-          "mid.color={{ colors.surface_dim.default.hex }}"
-          "alt.base.color={{ colors.surface_dim.default.hex }}"
-          "inactive.highlight.color={{ colors.surface_dim.default.hex }}"
+          "highlight.color=#F5E0DC"
+          "inactive.highlight.color=#F5E0DC"
+          "highlight.text.color=#181825"
+          "link.color=#F5E0DC"
+          "link.visited.color=#89B4FA"
+          "tooltip.text.color=#CDD6F4"
+          "text.press.color=#181825"
+          "text.toggle.color=#181825"
+          "text.normal.color=#585B70"
+          "text.focus.color=#F5E0DC"
+          "text.press.color=#F5E0DC"
+          "text.toggle.color=#F5E0DC"
         ]
         [
-          "tooltip.base.color=${t.surface2}\ntooltip.text.color=${t.fg}"
+          "highlight.color=${t.accent}"
+          "inactive.highlight.color=${t.accent}"
           "highlight.text.color=${t.accentFg}"
-          "link.color=${t.blue}"
-          "link.visited.color=${t.magenta}"
-          "progress.indicator.text.color=${t.accentFg}"
-          "base.color=${t.bg}"
-          "light.color=${t.bBlack}"
-          "mid.light.color=${t.border}"
-          "dark.color=${t.bgDark}"
-          "mid.color=${t.surface}"
-          "alt.base.color=${t.surface}"
-          "inactive.highlight.color=${t.border}"
+          "link.color=${t.accent}"
+          "link.visited.color=${t.blue}"
+          "tooltip.base.color=${t.surface2}\ntooltip.text.color=${t.fg}"
+          "text.press.color=${t.accentFg}"
+          "text.toggle.color=${t.accentFg}"
+          "text.normal.color=${t.muted}"
+          "text.focus.color=${t.accent}"
+          "text.press.color=${t.accent}"
+          "text.toggle.color=${t.accent}"
         ]
         pass0;
+      # pass2: structural fills that keep their role in every section.
       pass2 = lib.replaceStrings
         [
-          "{{ colors.surface.default.hex }}"
-          "{{ colors.surface_dim.default.hex }}"
-          "{{ colors.surface_container_high.default.hex }}"
-          "{{ colors.primary.default.hex }}"
-          "{{ colors.on_surface.default.hex }}"
-          "{{ colors.on_surface.default.hex | set_alpha 0.47 }}"
-          "{{ colors.on_surface_variant.default.hex }}"
-          "{{ colors.outline.default.hex }}"
-          "{{ mode }}"
+          "window.color=#1E1E2E"
+          "base.color=#181825"
+          "alt.base.color=#181825"
+          "button.color=#313244"
+          "light.color=#45475A"
+          "mid.light.color=#45475A"
+          "dark.color=#181825"
+          "mid.color=#181825"
         ]
         [
-          t.surface
-          t.bgDark
-          t.surface2
-          t.accent
-          t.fg
-          t.muted
-          t.muted
-          t.border
-          "dark"
+          "window.color=${t.bg}"
+          "base.color=${t.bgDark}"
+          "alt.base.color=${t.bgDark}"
+          "button.color=${t.surface}"
+          "light.color=${t.surface2}"
+          "mid.light.color=${t.surface2}"
+          "dark.color=${t.bgDark}"
+          "mid.color=${t.bgDark}"
         ]
         pass1;
+      # pass3: remaining text/disabled roles (all #CDD6F4 normals).
+      pass3 = lib.replaceStrings
+        [
+          "text.color=#CDD6F4"
+          "window.text.color=#CDD6F4"
+          "button.text.color=#CDD6F4"
+          "disabled.text.color=#585B70"
+          "text.normal.color=#CDD6F4"
+          "text.focus.color=#CDD6F4"
+          "text.press.color=#CDD6F4"
+          "text.toggle.color=#CDD6F4"
+        ]
+        [
+          "text.color=${t.fg}"
+          "window.text.color=${t.fg}"
+          "button.text.color=${t.fg}"
+          "disabled.text.color=${t.muted}"
+          "text.normal.color=${t.fg}"
+          "text.focus.color=${t.fg}"
+          "text.press.color=${t.fg}"
+          "text.toggle.color=${t.fg}"
+        ]
+        pass2;
     in
-    pass2;
+    pass3;
 
   mkSvg = t:
     lib.replaceStrings
       [
-        "{{ colors.shadow.default.hex }}"
-        "{{ colors.surface_variant.default.hex }}"
-        "{{ colors.surface.default.hex }}"
-        "{{ colors.primary.default.hex }}"
-        "{{ colors.secondary.default.hex }}"
-        "{{ colors.tertiary.default.hex }}"
-        "{{ colors.hover.default.hex }}"
-        "{{ colors.on_primary.default.hex }}"
-        "{{ colors.on_secondary.default.hex }}"
-        "{{ colors.on_surface.default.hex }}"
-        "{{ colors.on_surface_variant.default.hex }}"
-        "{{ colors.outline.default.hex }}"
-        "#7a7a7c"
-        "#646466"
-        "#88888a"
-        "#727274"
-        "#606062"
-        "#565658"
-        "#525254"
-        "#48484a"
-        "#414143"
-        "#313131"
-        "#28282a"
-        "#232325"
-        "#1c1c1c"
-        "#191919"
-        "#fb4934"
-        "#3daee9"
-        "#002700"
-        "#13d931"
-        "#d08770"
-        "#d65d0e"
-        "#ffb90c"
-        "#fadb2f"
-        "#ff005d"
-        "#ff8b26"
-        "#fc01cb"
-        "#fc0181"
-        "#717e98"
-        "#3c4366"
-        "#22252e"
-        "#f8f6da"
-        "#c3c370"
-        "#32302f"
-        "#504945"
-        "#98971a"
+        "#1E1E2E"
+        "#181825"
+        "#313244"
+        "#45475A"
+        "#585B70"
+        "#F5E0DC"
+        "#CDD6F4"
+        "#F38BA8"
+        "#CBA6F7"
+        "#000000"
+        "#141414"
+        "#31363b"
+        "#7f7f7f"
+        "#919191"
+        "#999999"
+        "#a6a6a6"
+        "#b4b4b4"
+        "#b6b6b6"
+        "#bebebe"
+        "#bfbfbf"
+        "#d2d2d2"
+        "#d6d6d6"
+        "#dcdcdc"
+        "#eaeaea"
       ]
       [
-        t.bgDark
-        t.surface2
-        t.surface
-        t.accent
-        t.blue
-        t.magenta
-        t.accent
-        t.accentFg
-        t.accentFg
-        t.fg
-        t.muted
-        t.border
-        t.bBlack
-        t.border
-        t.muted
-        t.border
-        t.border
-        t.surface2
-        t.surface2
-        t.surface
-        t.surface2
-        t.surface
-        t.surface
         t.bg
         t.bgDark
-        t.bgDark
+        t.surface
+        t.surface2
+        t.border
+        t.accent
+        t.fg
         t.red
-        t.blue
-        t.accentFg
-        t.green
-        t.bGreen
         t.accent
-        t.bYellow
-        t.yellow
-        t.magenta
-        t.yellow
-        t.magenta
-        t.bMagenta
-        t.blue
-        t.surface
-        t.bg
-        t.fg
-        t.yellow
-        t.surface
+        t.bgDark
+        t.bgDark
         t.surface2
-        t.green
+        t.muted
+        t.muted
+        t.muted
+        t.muted
+        t.muted
+        t.muted
+        t.muted
+        t.muted
+        t.muted
+        t.muted
+        t.muted
+        t.muted
       ]
       svgTpl;
 
