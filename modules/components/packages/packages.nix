@@ -14,6 +14,7 @@
         ...
       }:
       {
+
         services.flatpak.enable = true; # requires xdg-desktop portal to be enabled
         environment.systemPackages = with pkgs; [
           wget
@@ -94,7 +95,6 @@
           buku
           single-file-cli
           obsidian
-          opencode
           # file management
           lxqt.pcmanfm-qt
           kdePackages.dolphin
