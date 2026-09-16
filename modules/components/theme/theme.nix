@@ -1221,8 +1221,8 @@ in
           extraConfig = ''
             include ${homeDir}/.config/kitty/theme.conf
             bold_font auto
-            italic_font CascadiaCode-Italic
-            bold_italic_font CascadiaCode-BoldItalic
+            italic_font "Cascadia Code NF"
+            bold_italic_font "Cascadia Code NF"
           '';
         };
 
@@ -1243,6 +1243,12 @@ in
               [Fonts]
               fixed="FiraCode Nerd Font,12"
               general="Ubuntu Sans,12"
+            '';
+            # pcmanfm-qt/libfm-qt read the LXQt icon theme (not qt6ct),
+            # so set it explicitly. breeze exists as fallback.
+            "lxqt/lxqt.conf".text = ''
+              [General]
+              icon_theme=Papirus-Dark
             '';
           }
           (lib.concatMapAttrs
@@ -1272,7 +1278,10 @@ in
           if [ ! -f "$CURRENT" ]; then printf '%s\n' "${defaultTheme}" > "$CURRENT"; fi
           SEL="$(cat "$CURRENT")"
           if [ ! -d "$THEME_DIR/themes/$SEL" ]; then SEL="${defaultTheme}"; printf '%s\n' "${defaultTheme}" > "$CURRENT"; fi
-          # Seed unmanaged dirs on first run (migrating away from whole-dir symlinks)
+          # Seed unmanaged dirs on first run. Noctalia seeding keys off the
+          # settings file itself (not the dir): a real-but-empty dir after
+          # dropping the old whole-dir symlink must still get settings +
+          # templates, otherwise Noctalia boots factory defaults.
           if [ -L "$HOME/.config/doom" ]; then
             rm "$HOME/.config/doom"
             cp -a "${inputs.dotfiles}/common/doom/." "$HOME/.config/doom/"
@@ -1285,8 +1294,19 @@ in
           fi
           if [ -L "$HOME/.config/noctalia" ]; then
             rm "$HOME/.config/noctalia"
+          fi
+          if [ ! -f "$HOME/.config/noctalia/settings.toml" ]; then
             mkdir -p "$HOME/.config/noctalia"
-            cp -a "${inputs.dotfiles}/gruvbox/noctalia/settings.toml" "$HOME/.config/noctalia/settings.toml" 2>/dev/null || true
+            cp -a "${inputs.dotfiles}/gruvbox/noctalia/settings.toml" "$HOME/.config/noctalia/settings.toml"
+            chmod -R u+w "$HOME/.config/noctalia"
+          fi
+          if [ ! -d "$HOME/.config/noctalia/templates" ]; then
+            mkdir -p "$HOME/.config/noctalia"
+            cp -a "${inputs.dotfiles}/gruvbox/noctalia/templates" "$HOME/.config/noctalia/templates"
+            chmod -R u+w "$HOME/.config/noctalia"
+          fi
+          if [ ! -d "$HOME/.config/noctalia/community-templates" ]; then
+            cp -a "${inputs.dotfiles}/gruvbox/noctalia/community-templates" "$HOME/.config/noctalia/community-templates" 2>/dev/null || true
             chmod -R u+w "$HOME/.config/noctalia" 2>/dev/null || true
           fi
           mkdir -p "$HOME/.config/noctalia/palettes"
