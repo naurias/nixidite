@@ -14,6 +14,7 @@
           nerd-fonts.symbols-only
           nerd-fonts.fira-code
           cascadia-code
+          symbola
         ];
       };
     homeManager =

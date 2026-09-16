@@ -1128,8 +1128,14 @@ in
           else
             printf '[General]\ntheme=%s\n' "$KV" > "$HOME/.config/Kvantum/kvantum.kvconfig"
           fi
-          # GTK color-scheme via gsettings (theme name stays adw-gtk3, css carries palette)
+          # GTK color-scheme via dconf (schema-free writes; gsettings kept
+          # as best-effort fallback for sessions where schemas exist).
+          # Theme name stays adw-gtk3, the per-theme gtk.css carries color.
           POL="$(pol_of "$SEL")"
+          if command -v dconf >/dev/null 2>&1; then
+            dconf write /org/gnome/desktop/interface/color-scheme "'prefer-$POL'" >/dev/null 2>&1 || true
+            dconf write /org/gnome/desktop/interface/gtk-theme "'adw-gtk3'" >/dev/null 2>&1 || true
+          fi
           if command -v gsettings >/dev/null 2>&1; then
             gsettings set org.gnome.desktop.interface color-scheme "prefer-$POL" >/dev/null 2>&1 || true
             gsettings set org.gnome.desktop.interface gtk-theme "adw-gtk3" >/dev/null 2>&1 || true
@@ -1144,7 +1150,7 @@ in
           fi
           if command -v noctalia >/dev/null 2>&1; then timeout 15 noctalia msg reload >/dev/null 2>&1 || true; fi
           if command -v emacsclient >/dev/null 2>&1; then
-            timeout 15 emacsclient -e '(load-file "~/.config/doom/style.el")' >/dev/null 2>&1 || true
+            timeout 15 emacsclient -e '(progn (load-file "~/.config/doom/style.el") (when (boundp (quote doom-theme)) (load-theme doom-theme t)))' >/dev/null 2>&1 || true
           fi
           echo "Theme: $SEL ($PAL / $KV). New shells/panes pick up shell+editor themes; running Neovim/Emacs may need :colorscheme reload or restart."
         '';
@@ -1278,20 +1284,16 @@ in
           if [ ! -f "$CURRENT" ]; then printf '%s\n' "${defaultTheme}" > "$CURRENT"; fi
           SEL="$(cat "$CURRENT")"
           if [ ! -d "$THEME_DIR/themes/$SEL" ]; then SEL="${defaultTheme}"; printf '%s\n' "${defaultTheme}" > "$CURRENT"; fi
-          # Seed unmanaged dirs on first run. Noctalia seeding keys off the
-          # settings file itself (not the dir): a real-but-empty dir after
-          # dropping the old whole-dir symlink must still get settings +
-          # templates, otherwise Noctalia boots factory defaults.
+          # Seed unmanaged dirs on first run. Seeding keys off sentinel FILES
+          # (not dir shape) and uses cp -n: a real-but-incomplete dir after
+          # dropping old whole-dir symlinks still gets its missing files,
+          # while user customizations are never clobbered.
           if [ -L "$HOME/.config/doom" ]; then
             rm "$HOME/.config/doom"
-            cp -a "${inputs.dotfiles}/common/doom/." "$HOME/.config/doom/"
-            chmod -R u+w "$HOME/.config/doom"
           fi
-          if [ ! -d "$HOME/.config/doom" ]; then
-            mkdir -p "$HOME/.config/doom"
-            cp -a "${inputs.dotfiles}/common/doom/." "$HOME/.config/doom/"
-            chmod -R u+w "$HOME/.config/doom"
-          fi
+          mkdir -p "$HOME/.config/doom"
+          cp -ran "${inputs.dotfiles}/common/doom/." "$HOME/.config/doom/"
+          chmod -R u+w "$HOME/.config/doom"
           if [ -L "$HOME/.config/noctalia" ]; then
             rm "$HOME/.config/noctalia"
           fi
@@ -1312,10 +1314,10 @@ in
           mkdir -p "$HOME/.config/noctalia/palettes"
           if [ -L "$HOME/.config/ohmyposh" ]; then
             rm "$HOME/.config/ohmyposh"
-            mkdir -p "$HOME/.config/ohmyposh"
-            cp -a "${inputs.dotfiles}/ohmyposh/." "$HOME/.config/ohmyposh/" 2>/dev/null || true
-            chmod -R u+w "$HOME/.config/ohmyposh" 2>/dev/null || true
           fi
+          mkdir -p "$HOME/.config/ohmyposh"
+          cp -ran "${inputs.dotfiles}/ohmyposh/." "$HOME/.config/ohmyposh/" 2>/dev/null || true
+          chmod -R u+w "$HOME/.config/ohmyposh" 2>/dev/null || true
           mkdir -p "$HOME/.config/ohmyposh" "$HOME/.config/fzf"
           # Converge to the selected theme using the just-built switcher
           # (store path: works even though the new profile is not live yet).
