@@ -12,12 +12,9 @@
         home.packages = with pkgs; [
           inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
         ];
-        home.file = {
-          ".config/noctalia" = {
-            source = "${inputs.dotfiles}/gruvbox/noctalia";
-            recursive = true;
-          };
-        };
+        # NOTE: ~/.config/noctalia content (palettes + settings) is owned by
+        # den.aspects.theme now. Palettes for every theme are installed from
+        # the central palette and selected at runtime via `theme-switch`.
       };
   };
 }

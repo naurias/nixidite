@@ -1,5 +1,6 @@
-# DO-NOT-EDIT. This file was auto-generated using github:vic/flake-file.
-# Use `nix run .#write-flake` to regenerate it.
+# NOTE: `nix run .#write-flake` is currently broken upstream (den vs
+# vic flake-file URL conflict, pre-existing). Stylix input removed manually
+# as part of the migration to den.aspects.theme (runtime theme-switch).
 {
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 
@@ -40,10 +41,6 @@
     };
     nvf = {
       url = "github:NotAShelf/nvf";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    stylix = {
-      url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

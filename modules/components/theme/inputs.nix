@@ -1,10 +1,5 @@
 {
-
-  flake-file.inputs = {
-    stylix = {
-      url = "github:nix-community/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-  };
-
+  # NOTE: Stylix was removed. Theming is owned by den.aspects.theme
+  # (theme.nix): central palette + runtime `theme-switch`, no rebuilds,
+  # no NixOS specialisations.
 }

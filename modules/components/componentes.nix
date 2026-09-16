@@ -19,7 +19,7 @@
       virt.main._.podman
       de.desktop
       den.aspects.gaming
-      den.aspects.stylix
+      den.aspects.theme
       # neo.nvf
     ];
   };

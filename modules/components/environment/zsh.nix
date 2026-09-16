@@ -98,10 +98,6 @@
               source = "${inputs.dotfiles}/fzftab";
               recursive = true;
             };
-            ".config/ohmyposh" = {
-              source = "${inputs.dotfiles}/ohmyposh";
-              recursive = true;
-            };
           };
           programs.zsh = {
             initContent = ''
@@ -131,7 +127,11 @@
               alias ld='eza -lhD --icons=auto' # long list dirs
               alias lt='eza --icons=auto --tree' # list folder as tree
               alias ec='emacsclient'
-              eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/second.toml)"
+              # Dynamic theme files (managed by den.aspects.theme + theme-switch)
+              if [ -f "$HOME/.config/fzf/theme.zsh" ]; then
+                source "$HOME/.config/fzf/theme.zsh"
+              fi
+              eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/active.toml)"
             '';
           };
         };
