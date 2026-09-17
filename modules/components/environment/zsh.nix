@@ -54,7 +54,9 @@
           environment.variables = {
             EDITOR = "emacsclient -t -a ''";
             VISUAL = "emacsclient -c -a ''";
-            SSH_AUTH_SOCK = "/run/user/1000/ssh-agent";
+            # NOTE: no SSH_AUTH_SOCK here on purpose. `programs.ssh.startAgent`
+            # (see base/nixreaper.nix) already exports the correct per-user
+            # socket; a hardcoded /run/user/1000 path breaks every other UID.
           };
           environment.localBinInPath = true;
         };

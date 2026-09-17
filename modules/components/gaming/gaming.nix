@@ -17,9 +17,6 @@
         programs.steam.gamescopeSession.enable = true;
         # not needed due in modern dirivers
         #programs.gamemode.enable = true;
-        environment.sessionVariables = {
-          STEAM_EXTRA_COMPAT_TOOLS_PATH = "/home/nix/.steam/root/compatibilitytools.d";
-        };
         environment.systemPackages = with pkgs; [
           protonup-ng
           steam-run
@@ -27,6 +24,13 @@
           lutris
           faugus-launcher
         ];
+      };
+    homeManager =
+      { config, ... }:
+      {
+        home.sessionVariables = {
+          STEAM_EXTRA_COMPAT_TOOLS_PATH = "${config.home.homeDirectory}/.steam/root/compatibilitytools.d";
+        };
       };
 
   };

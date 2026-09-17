@@ -7,6 +7,7 @@
         lib,
         pkgs,
         modulesPath,
+        user,
         ...
       }:
       {
@@ -96,7 +97,13 @@
           ];
         };
 
-        fileSystems."/home/nix/Atlas" = {
+        # NOTE: mountpoint follows the den user home (was hardcoded /home/nix).
+        # The UUID itself is genuinely host specific, see README portability.
+        # NOTE: mountpoint follows the den user name (was hardcoded /home/nix).
+        # Only the name is parameterized: the key must stay config free,
+        # a config.users lookup here recurses via fileSystems evaluation.
+        # The UUID itself is genuinely host specific, see README portability.
+        fileSystems."/home/${user.name}/Atlas" = {
           device = "/dev/disk/by-uuid/e5142b34-ca16-46f5-8108-c95bfd137e29";
           fsType = "btrfs";
           options = [ 
