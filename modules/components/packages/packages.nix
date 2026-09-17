@@ -133,8 +133,12 @@
                 id = 0;
                 name = "nix";
                 # Allow theme-switch to theme the browser chrome via
-                # ~/.mozilla/firefox/nix/chrome/active-theme.css (restart
-                # Firefox to apply). See den.aspects.theme.
+                # ~/.config/mozilla/firefox/nix/chrome/active-theme.css
+                # (restart Firefox to apply). The static userChrome.css shim
+                # below only imports the active file. See den.aspects.theme.
+                userChrome = ''
+                  @import "active-theme.css";
+                '';
                 settings = {
                   "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
                 };

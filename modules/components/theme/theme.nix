@@ -1171,7 +1171,7 @@ in
           linkf "$S/yazi-theme.toml" "$HOME/.config/yazi/theme.toml"
           linkf "$S/gtk.css" "$HOME/.config/gtk-3.0/gtk.css"
           linkf "$S/gtk.css" "$HOME/.config/gtk-4.0/gtk.css"
-          linkf "$S/firefox-chrome.css" "$HOME/.mozilla/firefox/nix/chrome/active-theme.css"
+          linkf "$S/firefox-chrome.css" "$HOME/.config/mozilla/firefox/nix/chrome/active-theme.css"
           # Noctalia: all palettes are installed; point settings at this one
           PAL="$(pal_of "$SEL")"
           if [ -f "$HOME/.config/noctalia/settings.toml" ] && [ ! -L "$HOME/.config/noctalia/settings.toml" ]; then
@@ -1350,11 +1350,10 @@ in
           require("theme")
         '';
 
-        # Firefox chrome: static shim importing the active per-theme file.
-        # theme-switch flips active-theme.css; Firefox applies on restart.
-        home.file.".mozilla/firefox/nix/chrome/userChrome.css".text = ''
-          @import "active-theme.css";
-        '';
+        # NOTE: Firefox chrome is managed natively via
+        # programs.firefox.profiles.nix.userChrome (see packages.nix),
+        # which writes the static @import shim. Only active-theme.css is
+        # flipped here; never manage userChrome.css from this side.
 
         # Theme store: every theme × every app, built once, switched via symlinks
         xdg.configFile = lib.mkMerge [
@@ -1457,7 +1456,7 @@ in
             "$S/yazi-theme.toml:$HOME/.config/yazi/theme.toml" \
             "$S/gtk.css:$HOME/.config/gtk-3.0/gtk.css" \
             "$S/gtk.css:$HOME/.config/gtk-4.0/gtk.css" \
-            "$S/firefox-chrome.css:$HOME/.mozilla/firefox/nix/chrome/active-theme.css"; do
+            "$S/firefox-chrome.css:$HOME/.config/mozilla/firefox/nix/chrome/active-theme.css"; do
             src="''${pair%%:*}"; dst="''${pair#*:}"
             mkdir -p "$(dirname "$dst")"
             if [ -e "$dst" ] && [ ! -L "$dst" ]; then mv "$dst" "$dst.pre-theme-switch-bak"; fi
