@@ -330,5 +330,8 @@ Then add `alice.nix` (user aspect) under `modules/base/` following
 - [Noctalia](https://github.com/noctalia-dev/noctalia) for the desktop shell
 - [Kvantum](https://github.com/tsujan/Kvantum) and the wallbash base theme for Qt styling
 - [Chaotic Nyx](https://www.nyx.chaotic.cx/) for kernels and packages
-- [Hlissner](https://github.com/hlissner) for Doom Emacs
+- [Hlissner](https://github.com/hlissner) for Doom Emacs, encouraging to learn nix extensively and providing relevant sources.
+- [Wolfgang](https://git.notthebe.ee/notthebee/nix-config) for making it easy to understand multi host and user management 
+- [Quasigod](https://tangled.org/quasigod.xyz/nixconfig) for his configs making it easy to understand den organization and extension 
+- [Sascha Koenig](https://m3ta.dev/) for explaining practical flake application and deployments 
 - [nix.dev](https://nix.dev/)
