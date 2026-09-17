@@ -1,5 +1,11 @@
 { neo, inputs, ... }:
 {
+  # DORMANT (kept intentionally, see note below). To re-enable, add
+  # `neo.nvf` back to `den.aspects.components` includes AND resolve the
+  # collision first: `neo.nvf.provides.plugins` writes
+  # `.config/neomark/markdown.css`, which is owned by `den.aspects.theme`
+  # (runtime symlink, see `theme-switch`). Move that file into the theme
+  # store before enabling.
   neo.nvf = {
     includes = [
       neo.nvf._.languages

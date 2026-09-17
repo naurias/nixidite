@@ -24,7 +24,6 @@
           wlr-randr
           kanata
           sops
-          xdg-desktop-portal-gnome
           xdg-desktop-portal-wlr
           xdg-desktop-portal-gtk
           xdg-desktop-portal
@@ -133,6 +132,12 @@
                 isDefault = true;
                 id = 0;
                 name = "nix";
+                # Allow theme-switch to theme the browser chrome via
+                # ~/.mozilla/firefox/nix/chrome/active-theme.css (restart
+                # Firefox to apply). See den.aspects.theme.
+                settings = {
+                  "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+                };
               };
             };
           };
